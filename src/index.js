@@ -1,3 +1,3 @@
-import * as UI from "./modules/ui";
+import * as APP from "./modules/app";
 
-UI.render();
+APP.start();

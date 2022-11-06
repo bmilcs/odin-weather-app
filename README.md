@@ -8,10 +8,10 @@ Welcome to Bryan Miller's Weather App Project, the [twelth assignment](https://w
   - `async/await`
   - `fetch`
 - npm
-  - babel
-  - webpack
+  - webpack split config
 - ESLint
   - Airbnb
+  - Prettier
 - SASS
 
 ## Summary

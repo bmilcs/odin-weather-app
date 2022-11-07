@@ -2,29 +2,51 @@ import * as API from "./api";
 import * as UI from "./ui";
 
 export const start = async () => {
-  UI.render();
-  const weatherObj = await getWeatherJSON();
-  console.log(weatherObj);
+  getWeatherData()
+    .then((rawData) => processRawData(rawData))
+    .then((weatherObj) => UI.renderWeather(weatherObj));
 };
 
-// retrieve JSON from localStorage (prevent excessive api calls)
-// or get it from API --- for dev purposes
-const getWeatherJSON = async () => {
+const getWeatherData = async () => {
+  const key = "bmilcs-weather";
   try {
-    let jsonData;
-    const isCached = localStorage.getItem("bm-weather-app") !== null;
-    if (!isCached) {
-      console.log("Not cached.");
-      jsonData = await API.getWeatherByCityName("Springfield, MA USA");
-      localStorage.setItem("bm-weather-app", JSON.stringify(jsonData));
-    } else {
-      console.log("Is cached!");
-      jsonData = await JSON.parse(localStorage.getItem("bm-weather-app"));
-    }
-    return jsonData;
+    // dev purposes: use cached json if available
+    const isCached = localStorage.getItem(key) !== null;
+    if (isCached) return JSON.parse(localStorage.getItem(key));
+
+    // retrieve fresh data via api
+    console.log("Not cached.");
+    const weatherObj = await API.getWeatherByCityName("Springfield, MA USA");
+    localStorage.setItem("bmilcs-weather", JSON.stringify(weatherObj));
+    return weatherObj;
   } catch (err) {
-    console.error(err);
+    console.error(`APP.getWeatherData() ERROR: ${err}`);
   }
 };
 
-const processWeatherJSON = async (json) => {};
+const processRawData = (json) => {
+  return new Weather(json);
+};
+
+class Weather {
+  constructor(obj) {
+    // console.log(obj);
+    // location
+    this.location = `${obj.name}, ${obj.sys.country}`;
+
+    // description
+    this.weather = obj.weather[0].description.toUpperCase();
+    this.humidity = `${obj.main.humidity}%`;
+
+    this.imageURL = `http://openweathermap.org/img/wn/${obj.weather[0].icon}@2x.png`;
+
+    // temp
+    this.tempFeelsLike = this.formatTemp(obj.main.feels_like);
+    this.tempCurrent = this.formatTemp(obj.main.temp);
+    this.tempMax = this.formatTemp(obj.main.temp_max);
+    this.tempMin = this.formatTemp(obj.main.temp_min);
+  }
+  formatTemp(temp) {
+    return `${temp.toFixed(0)}°`;
+  }
+}

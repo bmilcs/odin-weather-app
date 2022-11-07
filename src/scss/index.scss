@@ -11,13 +11,40 @@
 :root {
   // colors
   --clr-neutral-900: #000000;
-  --clr-neutral-800: #141414;
-  --clr-neutral-200: #e9e9e9;
+  --clr-neutral-800: #1b1b1b;
+  --clr-neutral-200: #b4b4b4;
   --clr-neutral-100: #ffffff;
   --clr-accent: #1853d3;
+}
+
+body {
+  display: grid;
+  place-items: center;
+  height: 100vw;
 
   // defaults
   font-family: "Inter", sans-serif;
-  background: var(--clr-neutral-100);
-  color: var(--clr-neutral-900);
+  background: var(--clr-neutral-900);
+  color: var(--clr-neutral-100);
+}
+
+.weather-container {
+  padding: 1rem;
+  display: flex;
+
+  > * {
+    padding-inline: 1rem;
+  }
+
+  :nth-child(n + 3) {
+    color: var(--clr-neutral-200);
+  }
+}
+
+.location {
+  color: var(--clr-neutral-200);
+}
+
+.temp-current {
+  font-size: 5rem;
 }

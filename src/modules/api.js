@@ -2,19 +2,17 @@
 // perfectly okay because it is publicly available & there is no consequence
 // for exposing it.
 
-// http://api.openweathermap.org/data/2.5/forecast?id=524901&appid={API key}
+const APIKEY = "573f3a6ef58e78ac80754a1709cc780b";
 
-// ----------------------------------------------------------
-
-export const getWeatherByCityName = async (cityName) => {
+export const getWeatherByCityName = async (cityName, units = "imperial") => {
   try {
-    const fixedCityName = cityName.trim().replace(/\s+/gi, "%20");
-    const response = await fetch(
-      `http://api.openweathermap.org/data/2.5/weather?q=${fixedCityName}&appid=${APIKEY}`
-    );
+    const parsedCityName = cityName.trim().replace(/\s+/gi, "%20");
+    const URL = `http://api.openweathermap.org/data/2.5/weather?q=${parsedCityName}&appid=${APIKEY}&units=${units}`;
+    // const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${fixedCityName}&appid=${APIKEY}&units=${units}`;
+    const response = await fetch(URL);
     const weatherData = await response.json();
     return weatherData;
   } catch (err) {
-    console.error(`WebApp Error: ${err}`);
+    console.error(`API Error: ${err}`);
   }
 };

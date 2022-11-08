@@ -2,9 +2,9 @@ import * as API from "./api";
 import * as UI from "./ui";
 
 export const start = async () => {
-  getWeatherData()
-    .then((rawData) => processRawData(rawData))
-    .then((weatherObj) => UI.renderWeather(weatherObj));
+  const weatherData = await getWeatherData();
+  const weatherObj = processRawData(weatherData);
+  UI.renderWeather(weatherObj);
 };
 
 const getWeatherData = async () => {

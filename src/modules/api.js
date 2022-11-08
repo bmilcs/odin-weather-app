@@ -7,7 +7,7 @@ const APIKEY = "573f3a6ef58e78ac80754a1709cc780b";
 export const getWeatherByCityName = async (cityName, units = "imperial") => {
   try {
     const parsedCityName = cityName.trim().replace(/\s+/gi, "%20");
-    const URL = `http://api.openweathermap.org/data/2.5/weather?q=${parsedCityName}&appid=${APIKEY}&units=${units}`;
+    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${parsedCityName}&appid=${APIKEY}&units=${units}`;
     // const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${fixedCityName}&appid=${APIKEY}&units=${units}`;
     const response = await fetch(URL, { mode: "cors" });
     const weatherData = await response.json();

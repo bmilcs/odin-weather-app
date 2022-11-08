@@ -21,7 +21,7 @@ export default function containerize(nodeOrClassesForNewDiv, ...childNodes) {
       .forEach((cls) => container.classList.add(cls));
   }
 
-  // callback function: error catching while appending children to container
+  // error catching while appending children to container
   const addToContainer = (child) => {
     child.nodeType
       ? container.appendChild(child)

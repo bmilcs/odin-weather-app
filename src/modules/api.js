@@ -4,15 +4,15 @@
 
 const APIKEY = "573f3a6ef58e78ac80754a1709cc780b";
 
-export const getWeatherByCityName = async (cityName, units = "imperial") => {
-  try {
-    const parsedCityName = cityName.trim().replace(/\s+/gi, "%20");
-    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${parsedCityName}&appid=${APIKEY}&units=${units}`;
-    // const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${fixedCityName}&appid=${APIKEY}&units=${units}`;
-    const response = await fetch(URL, { mode: "cors" });
-    const weatherData = await response.json();
-    return weatherData;
-  } catch (err) {
-    console.error(`API Error: ${err}`);
-  }
+export const getWeatherByZipCode = (zipCode, units = "imperial") => {
+  const parsedZipCode = zipCode.trim().replace(/\s+/gi, "%20");
+  const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${parsedZipCode}&appid=${APIKEY}&units=${units}`;
+  return fetch(URL, { mode: "cors" })
+    .then((res) => {
+      console.log(res);
+      if (res.ok) return res.json();
+      return;
+    })
+    .catch((e) => e);
 };
+// const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${fixedCityName}&appid=${APIKEY}&units=${units}`;

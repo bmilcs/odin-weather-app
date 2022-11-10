@@ -13,7 +13,6 @@ export const changeLocation = async (zipCode) => {
     UI.displayError();
     return;
   }
-  UI.hideError();
   UI.clearWeather();
   const weatherObj = processRawData(weatherData);
   UI.renderWeather(weatherObj);

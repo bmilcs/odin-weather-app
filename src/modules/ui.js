@@ -74,12 +74,9 @@ export const renderForm = () => {
 };
 
 export const displayError = () => {
-  document.querySelector("button").classList.add("error");
-  setTimeout(() => hideError(), 5000);
-};
-
-export const hideError = () => {
-  document.querySelector("button").classList.remove("error");
+  const button = document.querySelector("button");
+  button.classList.add("error");
+  setTimeout(() => button.classList.remove("error"), 3000);
 };
 
 const changeLocation = (e) => {

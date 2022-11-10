@@ -9,8 +9,12 @@ export const start = () => {
 
 export const changeLocation = async (zipCode) => {
   const weatherData = await API.getWeatherByZipCode(zipCode);
-  console.log("app: ", weatherData);
-  if (!weatherData) return;
+  // console.log("app: ", weatherData);
+  if (!weatherData) {
+    UI.displayError();
+    return;
+  }
+  UI.hideError();
   UI.clearWeather();
   const weatherObj = processRawData(weatherData);
   UI.renderWeather(weatherObj);

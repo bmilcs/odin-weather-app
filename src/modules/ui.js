@@ -47,7 +47,7 @@ export const renderForm = () => {
   const form = makeElement("form", "zipcode-form", "", "zipcode-form");
   form.addEventListener("submit", changeLocation);
 
-  const inputLabel = makeElement("label", "input-label", "Change Location");
+  const inputLabel = makeElement("label", "input-label", "Location:");
   inputLabel.htmlFor = "zipcode-input";
 
   const inputTextbox = makeElement(
@@ -57,7 +57,7 @@ export const renderForm = () => {
     "zipcode-input"
   );
   inputTextbox.required = true;
-  inputTextbox.placeholder = "90210 - Zip Code";
+  inputTextbox.placeholder = "90210";
 
   const button = makeElement(
     "button",
@@ -68,6 +68,15 @@ export const renderForm = () => {
 
   const inputContainer = containerize(form, inputLabel, inputTextbox, button);
   document.querySelector("header").appendChild(inputContainer);
+};
+
+export const displayError = () => {
+  document.querySelector("button").classList.add("error");
+  setTimeout(() => hideError(), 5000);
+};
+
+export const hideError = () => {
+  document.querySelector("button").classList.remove("error");
 };
 
 const changeLocation = (e) => {

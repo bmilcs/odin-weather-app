@@ -2,6 +2,7 @@ import * as API from "./api";
 import * as UI from "./ui";
 
 export const start = () => {
+  UI.renderLayout();
   UI.renderForm();
   changeLocation("90210");
 };
@@ -10,6 +11,7 @@ export const changeLocation = async (zipCode) => {
   const weatherData = await API.getWeatherByZipCode(zipCode);
   console.log("app: ", weatherData);
   if (!weatherData) return;
+  UI.clearWeather();
   const weatherObj = processRawData(weatherData);
   UI.renderWeather(weatherObj);
 };

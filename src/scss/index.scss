@@ -10,22 +10,62 @@
 
 :root {
   // colors
-  --clr-neutral-900: #000000;
-  --clr-neutral-800: #1b1b1b;
-  --clr-neutral-200: #b4b4b4;
-  --clr-neutral-100: #ffffff;
-  --clr-accent: #1853d3;
+  --clr-neutral-900: #1a1b26;
+  --clr-neutral-800: #24283b;
+  --clr-neutral-700: #414868;
+  --clr-neutral-200: #bb9af7;
+  --clr-neutral-100: #a9b1d6;
+  --clr-accent-100: #9ece6a;
+  --clr-accent-200: #73daca;
 }
 
 body {
   display: grid;
+  grid-template-rows: min-content 1fr min-content;
+  grid-template-columns: 100vw;
   place-items: center;
   height: 100vh;
+  width: 100vw;
 
   // defaults
   font-family: "Inter", sans-serif;
   background: var(--clr-neutral-900);
   color: var(--clr-neutral-100);
+}
+
+header,
+footer {
+  width: 100vw;
+  background-color: var(--clr-neutral-800);
+  padding-block: 0.5rem;
+}
+
+form {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+input,
+button {
+  font: inherit;
+
+  margin-block: 8px;
+  padding: 0.25rem 0.5rem;
+
+  border-radius: 0.25rem;
+  background: none;
+  color: var(--clr-neutral-100);
+
+  outline: none;
+  border: 2px solid var(--clr-neutral-200);
+}
+
+button {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.85rem;
 }
 
 .weather-container {
@@ -42,7 +82,8 @@ body {
 }
 
 .location {
-  color: var(--clr-neutral-200);
+  color: var(--clr-accent-100);
+  text-transform: uppercase;
 }
 
 .temp-current {

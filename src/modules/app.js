@@ -9,7 +9,6 @@ export const start = () => {
 
 export const changeLocation = async (zipCode) => {
   const weatherData = await API.getWeatherByZipCode(zipCode);
-  // console.log("app: ", weatherData);
   if (!weatherData) {
     UI.displayError();
     return;

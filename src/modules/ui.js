@@ -8,7 +8,10 @@ import githubSVG from "../assets/github.svg";
 export const renderLayout = () => {
   containerize(
     document.querySelector("body"),
-    makeElement("header"),
+    containerize(
+      makeElement("header"),
+      makeElement("h1", "page-title", "weather")
+    ),
     makeElement("main"),
     prepareFooter()
   );
@@ -26,17 +29,17 @@ const prepareFooter = () => {
 export const renderWeather = (obj) => {
   const leftColumn = containerize(
     "left-col",
-    makeElement("img", "weather-img", "Weather Icon", "", obj.imageURL)
+    makeElement("h1", "temp-current", obj.tempCurrent)
   );
 
   const rightColumn = containerize(
     "right-col",
     makeElement("h2", "location", obj.location),
-    makeElement("h1", "temp-current", obj.tempCurrent),
     makeElement("h3", "description", obj.weather),
-    makeElement("p", "temp-other", `Min: ${obj.tempMin}`),
-    makeElement("p", "temp-other", `Max: ${obj.tempMax}`),
-    makeElement("p", "humidity", `Humidity: ${obj.humidity}`)
+    makeElement("p", "humidity", `Humidity: ${obj.humidity}`),
+    makeElement("p", "temp-other temp-min", `Min: ${obj.tempMin}`),
+    makeElement("p", "temp-other temp-max", `Max: ${obj.tempMax}`),
+    makeElement("img", "weather-img", "Weather Icon", "", obj.imageURL)
   );
 
   const container = containerize("weather-container", leftColumn, rightColumn);

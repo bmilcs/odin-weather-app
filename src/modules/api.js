@@ -9,7 +9,6 @@ export const getWeatherByZipCode = (zipCode, units = "imperial") => {
   const URL = `https://api.openweathermap.org/data/2.5/weather?zip=${parsedZipCode}&appid=${APIKEY}&units=${units}`;
   return fetch(URL, { mode: "cors" })
     .then((res) => {
-      console.log(res);
       if (res.ok) return res.json();
       return;
     })

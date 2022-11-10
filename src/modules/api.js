@@ -15,4 +15,3 @@ export const getWeatherByZipCode = (zipCode, units = "imperial") => {
     })
     .catch((e) => e);
 };
-// const URL = `http://api.openweathermap.org/data/2.5/forecast?q=${fixedCityName}&appid=${APIKEY}&units=${units}`;

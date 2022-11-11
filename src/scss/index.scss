@@ -35,9 +35,12 @@ body {
 }
 
 header {
-  display: flex;
-  justify-content: space-between;
-  padding: 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  place-items: center;
+  > * {
+    padding: 0.25rem;
+  }
 }
 
 header,
@@ -48,7 +51,7 @@ footer {
 }
 
 .page-title {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
   text-transform: uppercase;
   color: var(--clr-accent-100);
 }
@@ -58,105 +61,124 @@ form {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-}
 
-input,
-button {
-  font: inherit;
+  input,
+  button {
+    font: inherit;
 
-  margin-block: 8px;
-  padding: 0.25rem 0.5rem;
-
-  border-radius: var(--border-radius);
-  border: 2px solid var(--clr-neutral-200);
-  outline: none;
-
-  color: var(--clr-neutral-100);
-}
-
-input {
-  background: none;
-  width: 12ch;
-}
-
-button {
-  padding: 0.4rem 0.75rem;
-  color: var(--clr-neutral-800);
-  background: var(--clr-neutral-200);
-  font-size: 0.85rem;
-  font-weight: bold;
-  text-transform: uppercase;
-  transition: var(--transition);
-
-  &.error:after {
-    content: "Unable to locate zip code.";
-
-    position: absolute;
-    top: 100px;
-    right: 50%;
-    transform: translate(50%, -50%);
-
-    width: 20ch;
-    padding: 0.5rem;
-
-    text-transform: none;
-    font-weight: 400;
+    margin-block: 8px;
+    padding: 0.25rem 0.5rem;
 
     border-radius: var(--border-radius);
-    border: 2px solid var(--clr-accent-100);
+    border: 2px solid var(--clr-neutral-200);
+    outline: none;
 
-    color: var(--clr-accent-100);
-    background: var(--clr-neutral-800);
+    color: var(--clr-neutral-100);
   }
 
-  &:hover {
-    color: var(--clr-neutral-200);
-    background: var(--clr-neutral-800);
+  input {
+    background: none;
+    width: 12ch;
+  }
+
+  button {
+    position: relative;
+    padding: 0.4rem 0.75rem;
+
+    color: var(--clr-neutral-800);
+    background: var(--clr-neutral-200);
+
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+
+    transition: var(--transition);
+
+    &.error:after {
+      content: "Unable to locate zip code.";
+
+      position: absolute;
+      bottom: -70px;
+      right: 0;
+
+      width: max-content;
+      padding: 0.5rem;
+
+      text-transform: none;
+      font-weight: 400;
+
+      border-radius: var(--border-radius);
+      border: 2px solid var(--clr-accent-100);
+
+      color: var(--clr-accent-100);
+      background: var(--clr-neutral-800);
+    }
+
+    &:hover {
+      color: var(--clr-neutral-200);
+      background: var(--clr-neutral-800);
+    }
   }
 }
 
-.weather-container {
-  position: relative;
+main {
+  height: 100%;
+  width: 100%;
+
   display: flex;
+  justify-content: center;
+  align-items: center;
+
   padding: 1rem;
 
-  > * {
-    padding-inline: 1rem;
+  .weather-container {
+    position: relative;
+    background: var(--clr-neutral-800);
+    border-radius: 1rem;
+
+    margin-block: 2rem;
+    padding-inline: min(1rem, 4vw);
+    padding-block: min(2rem, 5vh);
+    flex: 1;
+
+    max-width: 400px;
+
+    > * {
+      padding-inline: 1rem;
+      padding-block: 0.25rem;
+    }
+
+    .weather-img {
+      position: absolute;
+      bottom: 10px;
+      right: 0px;
+
+      border-radius: 50%;
+      background: var(--clr-neutral-800);
+    }
+
+    .location {
+      font-size: 1.5rem;
+      text-transform: uppercase;
+
+      color: var(--clr-accent-200);
+    }
+
+    .temp-current {
+      text-align: center;
+
+      font-size: 7rem;
+
+      background: var(--clr-accent-200);
+      color: var(--clr-neutral-800);
+
+      border-radius: var(--border-radius);
+    }
+
+    .description {
+      margin-block: 1rem;
+      font-size: 2.5rem;
+      color: var(--clr-neutral-200);
+    }
   }
-}
-
-.weather-img {
-  position: absolute;
-  top: -40px;
-  left: -30px;
-
-  border-radius: 50%;
-  background: var(--clr-neutral-900);
-}
-
-.location {
-  font-size: 1.5rem;
-  text-transform: uppercase;
-
-  color: var(--clr-accent-200);
-}
-
-.temp-current {
-  padding: 0.25rem 1rem 0.25rem 1.75rem;
-
-  font-size: 7rem;
-
-  background: var(--clr-accent-200);
-  color: var(--clr-neutral-800);
-
-  border-radius: var(--border-radius);
-}
-
-.description {
-  font-size: 2rem;
-  color: var(--clr-neutral-200);
-}
-
-.humidity {
-  margin-top: 1rem;
 }
